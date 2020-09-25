@@ -11,7 +11,10 @@ new Vue({
             this.playerHealth = 100;
             this.monsterHealth = 100;
         },
-        attach: function () {
+        attack: function () {
+
+        },
+        specialAttack: function () {
 
         },
     }
