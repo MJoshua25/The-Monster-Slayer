@@ -19,13 +19,14 @@ new Vue({
         }
         ,
         specialAttack: function () {
-            if (this.playerAttach(3, 10)) {
+            if (this.playerAttach(10, 20)) {
                 return;
             }
-            this.monterAttach(5, 12)
+            this.monterAttach()
         },
         heal: function () {
-
+            this.playerHealth = Math.min(this.playerHealth+10, 100);
+            this.monterAttach()
         },
         giveUp: function () {
 
@@ -39,7 +40,7 @@ new Vue({
             this.playerHealth -= this.calculateDamage(min, max)
             this.checkWin();
         },
-        calculateDamage: function(min, max){
+        calculateDamage: function(/*number*/min, /*number*/max){
             return Math.max(Math.floor(Math.random() *max) + 1, min);
         },
         checkWin: function () {
