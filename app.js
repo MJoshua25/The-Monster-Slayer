@@ -5,7 +5,7 @@ new Vue({
         monsterHealth: 100,
         gameIsRunning: false
     },
-    method:{
+    methods:{
         startGame: function () {
             this.gameIsRunning = true;
             this.playerHealth = 100;
