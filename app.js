@@ -12,13 +12,10 @@ new Vue({
             this.monsterHealth = 100;
         },
         attach: function () {
-            this.monsterHealth -= this.calculateDamage(3, 10)
-
-            if (this.checkWin()) {
+            if (this.playerAttach(3, 10)) {
                 return;
             }
-            this.playerHealth -= this.calculateDamage(5, 12)
-            this.checkWin();
+            this.monterAttach(5, 12)
         }
         ,
         specialAttack: function () {
@@ -29,6 +26,15 @@ new Vue({
         },
         giveUp: function () {
 
+        },
+        playerAttach: function (min, max) {
+            this.monsterHealth -= this.calculateDamage(3, 10)
+
+            return this.checkWin()
+        },
+        monterAttach: function (min, max) {
+            this.playerHealth -= this.calculateDamage(min, max)
+            this.checkWin();
         },
         calculateDamage: function(min, max){
             return Math.max(Math.floor(Math.random() *max) + 1, min);
