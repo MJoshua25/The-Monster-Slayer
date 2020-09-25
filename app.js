@@ -30,18 +30,24 @@ new Vue({
         },
         checkWin: function () {
             if (this.monsterHealth <= 0){
+                this.monsterHealth = 0;
                 if(confirm('Vous avez gagnez! Nouvelle partie?')){
                     this.startGame();
                 } else {
                     this.gameIsRunning = false;
                 }
-                return;
-            } else if (confirm('Vous avez perdu! Nouvelle partie?')){
+                return true;
+            } else if (this.playerHealth <= 0) {
+                this.playerHealth = 0;
+                if (confirm('Vous avez perdu! Nouvelle partie?')) {
                     this.startGame();
                 } else {
                     this.gameIsRunning = false;
                 }
-                return;
+                return true;
+            } else {
+                return false;
+            }
         },
     }
 })
