@@ -10,6 +10,9 @@ new Vue({
             this.gameIsRunning = true;
             this.playerHealth = 100;
             this.monsterHealth = 100;
-        }
+        },
+        attach: function () {
+
+        },
     }
 })
