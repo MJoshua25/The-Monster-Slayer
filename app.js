@@ -12,7 +12,9 @@ new Vue({
             this.monsterHealth = 100;
         },
         attach: function () {
-
+            const max = 10;
+            const min = 3;
+            var damage = Math.max(Math.floor(Math.random() *max) + 1, min)
         },
         specialAttack: function () {
 
