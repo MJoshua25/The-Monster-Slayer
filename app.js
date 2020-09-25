@@ -11,10 +11,6 @@ new Vue({
             this.playerHealth = 100;
             this.monsterHealth = 100;
         },
-        doDamage: function(min, max, cible){
-            var damage = Math.max(Math.floor(Math.random() *max) + 1, min)
-            cible-=damage
-        },
         attach: function () {
             const max = 10;
             const min = 3;
@@ -28,6 +24,24 @@ new Vue({
         },
         giveUp: function () {
 
-        }
+        },
+        calculateDamage: function(min, max){
+            var damage = Math.max(Math.floor(Math.random() *max) + 1, min)
+        },
+        checkWin: function () {
+            if (this.monsterHealth <= 0){
+                if(confirm('Vous avez gagnez! Nouvelle partie?')){
+                    this.startGame();
+                } else {
+                    this.gameIsRunning = false;
+                }
+                return;
+            } else if (confirm('Vous avez perdu! Nouvelle partie?')){
+                    this.startGame();
+                } else {
+                    this.gameIsRunning = false;
+                }
+                return;
+        },
     }
 })
