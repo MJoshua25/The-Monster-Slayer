@@ -17,5 +17,8 @@ new Vue({
         specialAttack: function () {
 
         },
+        heal: function () {
+
+        },
     }
 })
