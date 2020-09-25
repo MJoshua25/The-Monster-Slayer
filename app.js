@@ -14,14 +14,13 @@ new Vue({
         attach: function () {
             this.monsterHealth -= this.calculateDamage(3, 10)
 
-            if (this.checkWin()){
+            if (this.checkWin()) {
                 return;
             }
             this.playerHealth -= this.calculateDamage(5, 12)
-            if (this.checkWin()){
-
-            }
-        },
+            this.checkWin();
+        }
+        ,
         specialAttack: function () {
 
         },
@@ -32,7 +31,7 @@ new Vue({
 
         },
         calculateDamage: function(min, max){
-            var damage = Math.max(Math.floor(Math.random() *max) + 1, min)
+            return Math.max(Math.floor(Math.random() *max) + 1, min);
         },
         checkWin: function () {
             if (this.monsterHealth <= 0){
