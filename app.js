@@ -3,7 +3,8 @@ new Vue({
     data:{
         playerHealth: 100,
         monsterHealth: 100,
-        gameIsRunning: false
+        gameIsRunning: false,
+        turns: [],
     },
     methods:{
         startGame: function () {
@@ -12,6 +13,7 @@ new Vue({
             this.monsterHealth = 100;
         },
         attach: function () {
+
             if (this.playerAttach(3, 10)) {
                 return;
             }
@@ -25,19 +27,34 @@ new Vue({
             this.monterAttach()
         },
         heal: function () {
-            this.playerHealth = Math.min(this.playerHealth+10, 100);
+            let newHeatlh = Math.min(this.playerHealth + 10, 100);
+            let diff = newHeatlh - this.playerHealth
+            this.playerHealth = newHeatlh
+            this.turns.unshift({
+                isPlayer:true,
+                text: 'Player heal for ' + diff
+            })
             this.monterAttach()
         },
         giveUp: function () {
-
+            this.gameIsRunning = false;
         },
         playerAttach: function (/*number*/min, /*number*/max) {
-            this.monsterHealth -= this.calculateDamage(min, max)
-
+            var damage = this.calculateDamage(min, max)
+            this.monsterHealth -= damage
+            this.turns.unshift({
+                isPlayer:true,
+                text: 'Player hits Monster for ' + damage
+            })
             return this.checkWin()
         },
         monterAttach: function (min=5, max=12) {
-            this.playerHealth -= this.calculateDamage(min, max)
+            var damage = this.calculateDamage(min, max)
+            this.playerHealth -= damage
+            this.turns.unshift({
+                isPlayer:false,
+                text: 'Monster hits Player for ' + damage
+            })
             this.checkWin();
         },
         calculateDamage: function(/*number*/min, /*number*/max){
